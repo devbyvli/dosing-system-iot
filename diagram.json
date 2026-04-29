@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "author": "Caloianu Vali",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": -4.76, "attrs": {} },
+    { "type": "wokwi-hc-sr04", "id": "ultrasonic1", "top": -152.1, "left": -42.5, "attrs": {} },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": 256,
+      "left": -71.2,
+      "attrs": { "pins": "i2c" }
+    },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": 105.8, "left": 144, "attrs": {} },
+    { "type": "wokwi-led", "id": "led1", "top": -42, "left": -101.8, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": 54,
+      "left": -101.8,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": 127.2,
+      "left": -123,
+      "attrs": { "volume": "0.1" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:3V3", "ultrasonic1:VCC", "green", [ "h0" ] ],
+    [ "ultrasonic1:GND", "esp:GND.2", "black", [ "v0" ] ],
+    [ "esp:5", "ultrasonic1:TRIG", "orange", [ "h0" ] ],
+    [ "esp:18", "ultrasonic1:ECHO", "orange", [ "h0" ] ],
+    [ "lcd1:VCC", "esp:5V", "red", [ "h0" ] ],
+    [ "lcd1:GND", "esp:GND.1", "black", [ "h0" ] ],
+    [ "lcd1:SDA", "esp:21", "blue", [ "h0" ] ],
+    [ "lcd1:SCL", "esp:22", "blue", [ "h0" ] ],
+    [ "relay1:VCC", "esp:5V", "red", [ "h0" ] ],
+    [ "relay1:GND", "esp:GND.2", "black", [ "h0" ] ],
+    [ "relay1:IN", "esp:19", "green", [ "h0" ] ],
+    [ "led2:C", "esp:GND.2", "black", [ "v0" ] ],
+    [ "led2:A", "esp:2", "red", [ "v0" ] ],
+    [ "led1:A", "esp:4", "red", [ "v0" ] ],
+    [ "led1:C", "esp:GND.2", "black", [ "v0" ] ],
+    [ "bz1:2", "esp:15", "red", [ "v0" ] ],
+    [ "bz1:1", "esp:GND.1", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
